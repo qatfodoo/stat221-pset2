@@ -1,6 +1,12 @@
 source("poissonLogN_MCMC.R")
 source("kuatefodouop_ps2_task2.R")
 
+
+if (Sys.getenv("SLURM_JOB_ID") != "") {
+  my_id <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
+  print(my_id)
+}
+
 ## Task 3: Evaluate coverage for a simple case
 
 # Constants
@@ -9,7 +15,7 @@ N <- 2
 w <- rep(1, J) # equal weights
 
 # Simulation parameters
-B <-1 #1000 # Number of simulations
+B <-5 #1000 # Number of simulations
 B.theta <- 1 #40 # theta drawss
 B.y <- floor(B / B.theta) # y draws for each theta
 
@@ -77,3 +83,7 @@ for (i in 1:1) { #length(mu)) {
 t2.ov <- Sys.time()
 dt.ov <- t2.ov - t1.ov
 print(paste("Total elapsed time", dt.ov, sep=": "))
+
+# Store results in output folder
+save(list=c("log.theta_mat", "log.theta_mean", "log.theta_sd",
+            "cov68_mat", "cov95_mat"), file="./out/task3_out.Rdata")
