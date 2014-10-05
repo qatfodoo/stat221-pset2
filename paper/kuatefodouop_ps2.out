@@ -1,0 +1,11 @@
+\BOOKMARK [1][-]{section.1}{Model and Posterior Distribution}{}% 1
+\BOOKMARK [1][-]{section.2}{Linear Basis Function Regression}{}% 2
+\BOOKMARK [1][-]{section.3}{Ridge Regression}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Ridge regression for Bishop's data}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Model selection with ridge regression}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{BlogFeedback data}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{Generalizations}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Least absolute deviation}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{LASSO}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{Difference of approach}{section.4}% 10
+\BOOKMARK [1][-]{appendix.A}{Figures}{}% 11
