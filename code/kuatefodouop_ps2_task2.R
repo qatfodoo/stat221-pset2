@@ -1,3 +1,4 @@
+
 ## Task 2: Write functions to simulate data from the model
 
 simYgivenTheta <- function(theta, w, N) {
