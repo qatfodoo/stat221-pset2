@@ -53,9 +53,9 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
     # Draw set of Y for current theta
     t1.mcmc <- as.numeric(Sys.time())
     for (b.y in 1:B.y) {
-      
-      Y <- simYgivenTheta(theta, w, N) # Simulate observations
       w <- rep(1, J)
+      Y <- simYgivenTheta(theta, w, N) # Simulate observations
+      
       mcmc <- poisson.logn.mcmc(Y, w)
       
       logTheta.draws <- mcmc$logTheta # Sample draws
