@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J parallel-testing # name for job array
+#SBATCH -J mcmc-equalweight # name for job array
 #SBATCH -o all.out #Standard output
 #SBATCH -e all.err #Standard error
 #SBATCH -p general #Partition
@@ -7,10 +7,9 @@
 #SBATCH --mem-per-cpu 3000 #Memory request
 #SBATCH -n 1 #Number of cores
 #SBATCH -N 1 #All cores on one machine
+#SBATCH --mail-user=kuatefodouop@fas.harvard.edu
+#SBATCH --mail-type=ALL    # When to send mail
 
-# first arg = true mean (unknown)
-# second arg = sd (known)
-# third arg = no. of samples (N)
-# fourth arg = number of reps / node
-# fifth argument = job id
+# argument = job id
+
 Rscript kuatefodouop_ps2_task3.R $SLURM_ARRAY_TASK_ID
