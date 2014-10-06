@@ -71,8 +71,8 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
       logTheta.cov_95[, b.y] <- (log.theta >= post.int_95[, 1]) & (log.theta <= post.int_95[, 2])
     }
     t2.mcmc <- Sys.time()
-    dt.mcmc <- t2.mcmc - t1.mcmc
-    print(paste("Current theta MCMCs elapsed time", dt.mcmc, sep=": "))
+    dt.mcmc <- (t2.mcmc - t1.mcmc) / 60 # dt in min
+    print(paste("Current theta MCMCs elapsed time (min)", dt.mcmc, sep=": "))
     
     # Compute frequency coverage for log.theta
     cov68_mat[, b.theta] <- apply(logTheta.cov_68, 1, mean)
@@ -80,8 +80,8 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
     
   }
   t2.sim <- Sys.time()
-  dt.sim <- t2.sim - t1.sim
-  print(paste(paste("Simulation elapsed time, task", task.id, sep=" "), dt.sim, sep=": "))
+  dt.sim <- (t2.sim - t1.sim) / 60 # dt in min
+  print(paste(paste("Simulation elapsed time (min), task", task.id, sep=" "), dt.sim, sep=": "))
   
   gc() # required memory
   
