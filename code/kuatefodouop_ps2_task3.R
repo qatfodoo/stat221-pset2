@@ -19,9 +19,9 @@ sigsq.array <- c(0.7^2, 1.3^2, 1,3^2, 1.6^2)
 if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
   
   job.id <- as.numeric(Sys.getenv("SLURM_JOB_ID"))
-  print(paste("Job id", job.id[i], sep=": "))
+  print(paste("Job id", job.id, sep=": "))
   task.id <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
-  print(paste("Task id", task.id[i], sep=": "))
+  print(paste("Task id", task.id, sep=": "))
   param.id <- task.id %% 4 + 1 # Parameter handled by task
   
   gc() # garbage collection
