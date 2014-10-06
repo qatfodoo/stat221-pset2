@@ -73,7 +73,7 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
     }
     t2.mcmc <- as.numeric(Sys.time())
     dt.mcmc <- (t2.mcmc - t1.mcmc) / 60 # dt in min
-    print(paste("Current theta MCMCs elapsed time (min)", dt.mcmc, sep=": "))
+    print(paste(paste("Current theta MCMCs elapsed time (min), task", task.id, sep=" "), dt.mcmc, sep=": "))
     
     # Compute frequency coverage for log.theta
     cov68_mat[, b.theta] <- apply(logTheta.cov_68, 1, mean)
