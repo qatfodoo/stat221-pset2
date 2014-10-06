@@ -1,6 +1,5 @@
 source("rASL.R")
-source("kuatefodouop_ps2_task2.R")
-source("kuatefodouop_ps2_task3.R")
+source("poissonLogN_MCMC.R")
 
 ## Task 5: Evalute coverage with model mispecification
 
@@ -14,8 +13,9 @@ B <-4 #1000 # Number of simulations
 B.theta <- 2 #40 # theta drawss
 B.y <- floor(B / B.theta) # y draws for each theta
 
-mu.array <- c(1.6, 2.5, 5.2, 4.9)
-sigsq.array <- c(0.7^2, 1.3^2, 1,3^2, 1.6^2)
+x.0_array <- c(1.6, 1.6, 1.6, 1.6)
+m_array <- c(0, -0.7, 0.7, 0)
+b_array <- c(1.3, 1.3, 1.3, 2.6)
 
 # Run simulation
 
@@ -37,14 +37,15 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
   cov95_mat <- matrix(data=0, nrow=J, ncol= B.theta) # Store 95% frequency coverage for theta
   
   # Set current model constant hyperparameters
-  mu <- mu.array[param.id]
-  sigsq <- sigsq.array[param.id]
+  x.0 <- x.0_array[param.id]
+  m <- m_array[param.id]
+  b <- b_array[param.id]
   
   # Draw set of thetas
   t1.sim <- as.numeric(Sys.time())
   for (b.theta in 1:B.theta) {
     
-    log.theta <- rnorm(J, mu, sqrt(sigsq)) # Sample log.theta
+    log.theta <- rASL(J, x.0, m, b) # Sample log.theta with asym Laplace
     log.theta_mat[, b.theta] <- log.theta
     theta <- exp(log.theta)
     
@@ -87,7 +88,7 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
   
   # Store results in output folder
   save(list=c("log.theta_mat", "log.theta_mean", "log.theta_sd",
-              "cov68_mat", "cov95_mat"), file=paste("./out/task4_out_jobid", job.id, "_taskid",
+              "cov68_mat", "cov95_mat"), file=paste("./out/task5/task5_out_jobid", job.id, "_taskid",
                                                     task.id, "_param", param.id, ".Rdata", sep=""))
 }
 

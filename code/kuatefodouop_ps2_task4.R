@@ -55,6 +55,7 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
     for (b.y in 1:B.y) {
       
       Y <- simYgivenTheta(theta, w, N) # Simulate observations
+      w <- rep(1, J)
       mcmc <- poisson.logn.mcmc(Y, w)
       
       logTheta.draws <- mcmc$logTheta # Sample draws
@@ -86,7 +87,7 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
   
   # Store results in output folder
   save(list=c("log.theta_mat", "log.theta_mean", "log.theta_sd",
-              "cov68_mat", "cov95_mat"), file=paste("./out/task4_out_jobid", job.id, "_taskid",
+              "cov68_mat", "cov95_mat"), file=paste("./out/task4/task4_out_jobid", job.id, "_taskid",
                                                     task.id, "_param", param.id, ".Rdata", sep=""))
 }
 

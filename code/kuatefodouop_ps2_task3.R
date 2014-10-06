@@ -87,7 +87,7 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
   
   # Store results in output folder
   save(list=c("log.theta_mat", "log.theta_mean", "log.theta_sd",
-              "cov68_mat", "cov95_mat"), file=paste("./out/task3_out_jobid", job.id, "_taskid",
+              "cov68_mat", "cov95_mat"), file=paste("./out/task3/task3_out_jobid", job.id, "_taskid",
                 task.id, "_param", param.id, ".Rdata", sep=""))
 }
 
