@@ -9,8 +9,8 @@ N <- 2
 w <- rep(1, J) # equal weights
 
 # Simulation parameters
-B <-200 #1000 # Number of simulations
-B.theta <- 20 #40 # theta drawss
+B <-4 #1000 # Number of simulations
+B.theta <- 2 #40 # theta drawss
 B.y <- floor(B / B.theta) # y draws for each theta
 
 mu.array <- c(1.6, 2.5, 5.2, 4.9)
@@ -72,7 +72,7 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
     }
     t2.mcmc <- Sys.time()
     dt.mcmc <- (t2.mcmc - t1.mcmc) / 60 # dt in min
-    print(paste("Current theta MCMCs elapsed time (min)", dt.mcmc, sep=": "))
+    print(paste(paste("Current theta MCMCs elapsed time (min), task", task.id, sep=" "), dt.mcmc, sep=": "))
     
     # Compute frequency coverage for log.theta
     cov68_mat[, b.theta] <- apply(logTheta.cov_68, 1, mean)
