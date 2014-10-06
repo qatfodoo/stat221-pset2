@@ -1,12 +1,6 @@
 source("poissonLogN_MCMC.R")
 source("kuatefodouop_ps2_task2.R")
 
-
-if (Sys.getenv("SLURM_JOB_ID") != "") {
-  my_id <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
-  print(my_id)
-}
-
 ## Task 3: Evaluate coverage for a simple case
 
 # Constants
@@ -15,26 +9,33 @@ N <- 2
 w <- rep(1, J) # equal weights
 
 # Simulation parameters
-B <-5 #1000 # Number of simulations
-B.theta <- 1 #40 # theta drawss
+B <-4 #1000 # Number of simulations
+B.theta <- 2 #40 # theta drawss
 B.y <- floor(B / B.theta) # y draws for each theta
 
 mu.array <- c(1.6, 2.5, 5.2, 4.9)
 sigsq.array <- c(0.7^2, 1.3^2, 1,3^2, 1.6^2)
 
-# log.theta and corresponding coverage
-log.theta_mat <- matrix(data=0, nrow=J, ncol= B.theta) # Store log.theta values
-log.theta_mean <- replicate(B.theta, matrix(data=0, nrow=J, ncol= B.y), simplify=F) # Store posterior means of draws
-log.theta_sd <- replicate(B.theta, matrix(data=0, nrow=J, ncol= B.y), simplify=F) # Store posterior sd of drawslog.theta_mean
-cov68_mat <- matrix(data=0, nrow=J, ncol= B.theta) # Store 68% frequency coverage for thetas
-cov95_mat <- matrix(data=0, nrow=J, ncol= B.theta) # Store 95% frequency coverage for theta
-
-t1.ov <- Sys.time()
-for (i in 1:1) { #length(mu)) {
+if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
+  
+  job.id <- as.numeric(Sys.getenv("SLURM_JOB_ID"))
+  print(paste("Job id", job.id[i], sep=": "))
+  task.id <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
+  print(paste("Task id", task.id[i], sep=": "))
+  param.id <- task.id %% 4 + 1 # Parameter handled by task
+  
+  gc() # garbage collection
+  
+  # log.theta and corresponding coverage
+  log.theta_mat <- matrix(data=0, nrow=J, ncol= B.theta) # Store log.theta values
+  log.theta_mean <- replicate(B.theta, matrix(data=0, nrow=J, ncol= B.y), simplify=F) # Store posterior means of draws
+  log.theta_sd <- replicate(B.theta, matrix(data=0, nrow=J, ncol= B.y), simplify=F) # Store posterior sd of drawslog.theta_mean
+  cov68_mat <- matrix(data=0, nrow=J, ncol= B.theta) # Store 68% frequency coverage for thetas
+  cov95_mat <- matrix(data=0, nrow=J, ncol= B.theta) # Store 95% frequency coverage for theta
   
   # Set current model constant hyperparameters
-  mu <- mu.array[i]
-  sigsq <- sigsq.array[i]
+  mu <- mu.array[param.id]
+  sigsq <- sigsq.array[param.id]
   
   # Draw set of thetas
   t1.sim <- Sys.time()
@@ -78,12 +79,15 @@ for (i in 1:1) { #length(mu)) {
   }
   t2.sim <- Sys.time()
   dt.sim <- t2.sim - t1.sim
-  print(paste("Simulation elapsed time", dt.sim, sep=": "))
+  print(paste(paste("Simulation elapsed time, task", task.id, sep=" "), dt.sim, sep=": "))
+  
+  gc() # required memory
+  
+  # Store results in output folder
+  save(list=c("log.theta_mat", "log.theta_mean", "log.theta_sd",
+              "cov68_mat", "cov95_mat"), file=paste("./out/task3_out_job", job.id, "_task",
+                task.id, ".Rdata", sep=""))
 }
-t2.ov <- Sys.time()
-dt.ov <- t2.ov - t1.ov
-print(paste("Total elapsed time", dt.ov, sep=": "))
 
-# Store results in output folder
-save(list=c("log.theta_mat", "log.theta_mean", "log.theta_sd",
-            "cov68_mat", "cov95_mat"), file="./out/task3_out.Rdata")
+
+
