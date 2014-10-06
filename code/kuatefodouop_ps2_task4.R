@@ -6,7 +6,7 @@ source("kuatefodouop_ps2_task2.R")
 # Constants
 J <- 1000
 N <- 2
-w <- read.table("weights.txt") # distinct weights
+w <- as.numeric(unlist(read.table("weights.txt"))) # distinct weights
 
 # Simulation parameters
 B <-4 #1000 # Number of simulations
