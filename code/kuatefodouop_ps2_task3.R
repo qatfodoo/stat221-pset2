@@ -16,6 +16,8 @@ B.y <- floor(B / B.theta) # y draws for each theta
 mu.array <- c(1.6, 2.5, 5.2, 4.9)
 sigsq.array <- c(0.7^2, 1.3^2, 1,3^2, 1.6^2)
 
+# Run simulation
+
 if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
   
   job.id <- as.numeric(Sys.getenv("SLURM_JOB_ID"))
@@ -88,4 +90,5 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
               "cov68_mat", "cov95_mat"), file=paste("./out/task3_out_jobid", job.id, "_taskid",
                 task.id, "_param", param.id, ".Rdata", sep=""))
 }
+
 
