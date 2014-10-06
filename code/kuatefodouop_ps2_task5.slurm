@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH -J mcmc-equalweight # name for job array
-#SBATCH -o task3.out #Standard output
-#SBATCH -e task3.err #Standard error
+#SBATCH -J mcmc-mispecified # name for job array
+#SBATCH -o task5.out #Standard output
+#SBATCH -e task5.err #Standard error
 #SBATCH -p general #Partition
 #SBATCH -t 01:00:00 #Running time of 20 mins.
 #SBATCH --mem-per-cpu 3000 #Memory request
@@ -12,4 +12,4 @@
 
 # argument = job id
 
-Rscript kuatefodouop_ps2_task3.R $SLURM_ARRAY_TASK_ID
+Rscript kuatefodouop_ps2_task5.R $SLURM_ARRAY_TASK_ID
