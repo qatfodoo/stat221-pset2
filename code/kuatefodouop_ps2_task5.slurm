@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -J mcmc-mispecified # name for job array
-#SBATCH -o task5.out #Standard output
-#SBATCH -e task5.err #Standard error
+#SBATCH -o ./dump/task5.out #Standard output
+#SBATCH -e ./dump/task5.err #Standard error
 #SBATCH -p general #Partition
 #SBATCH -t 02:00:00 #Running time of 20 mins.
 #SBATCH --mem-per-cpu 3000 #Memory request

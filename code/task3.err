@@ -1,7 +1,0 @@
-slurmstepd: error: *** JOB 21054850 CANCELLED AT 2014-10-06T23:28:15 DUE TO TIME LIMIT on holy2a03105 ***
-slurmstepd: error: _slurm_cgroup_destroy: problem deleting step cgroup path /cgroup/freezer/slurm/uid_556704/job_21054845/step_batch: Device or resource busy
-slurmstepd: error: _slurm_cgroup_destroy: problem deleting step cgroup path /cgroup/freezer/slurm/uid_556704/job_21054849/step_batch: Device or resource busy
-slurmstepd: error: *** JOB 21054851 CANCELLED AT 2014-10-06T23:28:15 DUE TO TIME LIMIT on holy2a03105 ***
-slurmstepd: error: _slurm_cgroup_destroy: problem deleting step cgroup path /cgroup/freezer/slurm/uid_556704/job_21054851/step_batch: Device or resource busy
-slurmstepd: error: *** JOB 21054848 CANCELLED AT 2014-10-06T23:28:50 DUE TO TIME LIMIT on holy2a03103 ***
-slurmstepd: error: _slurm_cgroup_destroy: problem deleting step cgroup path /cgroup/freezer/slurm/uid_556704/job_21054848/step_batch: Device or resource busy
