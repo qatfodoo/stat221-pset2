@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -J mcmc-equalweight # name for job array
-#SBATCH -o task3.out #Standard output
-#SBATCH -e task3.err #Standard error
+#SBATCH -o ./dump/task3.out #Standard output
+#SBATCH -e ./dump/task3.err #Standard error
 #SBATCH -p general #Partition
 #SBATCH -t 02:00:00 #Running time of 20 mins.
 #SBATCH --mem-per-cpu 3000 #Memory request
