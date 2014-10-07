@@ -9,7 +9,7 @@ N <- 2
 w <- rep(1, J) # equal weights
 
 # Simulation parameters
-B <-15 #1000 # Number of simulations
+B <-150 #1000 # Number of simulations
 B.theta <- 15 #40 # theta drawss
 B.y <- floor(B / B.theta) # y draws for each theta
 
