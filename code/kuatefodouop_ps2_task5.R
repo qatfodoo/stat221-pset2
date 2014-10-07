@@ -78,7 +78,7 @@ if (Sys.getenv("SLURM_JOB_ID") != "") { # Divide computation per tasks
     
     # Compute frequency coverage for log.theta
     cov68_mat[, b.theta] <- apply(logTheta.cov_68, 1, mean)
-    cov95_mat[, b.theta] <- apply(logTheta.cov_68, 1, mean)
+    cov95_mat[, b.theta] <- apply(logTheta.cov_95, 1, mean)
     
   }
   t2.sim <- as.numeric(Sys.time())
