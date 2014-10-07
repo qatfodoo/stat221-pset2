@@ -1,18 +1,15 @@
 library(ggplot2)
 source("multiplot.R")
 
-## Task 3 post-processing
-
-load("./out/task4/task4_out_jobid21019070_taskid12_param1.Rdata")
-obj = local(get(load("./out/task4/task4_out_jobid21019070_taskid12_param1.Rdata")))
+## Task 4 post-processing
 
 # Simulation parameters for object initialization
 J <- 1000
 N <- 2
 w <- as.numeric(unlist(read.table("weights.txt"))) # distinct weights
 
-B <-35 #1000 # Number of simulations
-B.theta <- 7 #40 # theta drawss
+B <-40 # Number of simulations
+B.theta <- 4 # theta drawss
 B.y <- floor(B / B.theta) # y draws for each theta
 n.param <- 4 # Number of parameters
 n.t <- 3 # Number of tasks per parameter
@@ -78,7 +75,7 @@ for (p in 1:n.param) {
     ylim(0, 1) +
     ylab("cov_68") +
     xlab("log.theta") +
-    labs(title="68% coverage against Log Theta")
+    labs(title="68% coverage against Log Theta, task 4")
   
   p_logt95.list[[p]] <- ggplot(, aes(x=as.vector(ltheta), as.vector(cov95))) + 
     geom_point(size=3, alpha=1, colour="darkblue") +
@@ -86,7 +83,7 @@ for (p in 1:n.param) {
     ylim(0, 1) +
     ylab("cov_95") +
     xlab("log.theta") +
-    labs(title="95% coverage against Log Theta")
+    labs(title="95% coverage against Log Theta, task 4")
   
   multiplot(p_logt68.list[[p]], p_logt95.list[[p]])
   
@@ -99,7 +96,7 @@ for (p in 1:n.param) {
     ylim(0, 1) +
   ylab("cov_68") +
     xlab("log.w") +
-    labs(title="68% coverage against Log w")
+    labs(title="68% coverage against Log w, task 4")
   
   p_logw95.list[[p]] <- ggplot(, aes(x=as.vector(logw), as.vector(cov68))) + 
     geom_point(size=3, alpha=1, colour="darkblue") +
@@ -107,7 +104,7 @@ for (p in 1:n.param) {
     ylim(0, 1) +
     ylab("cov_95") +
     xlab("log.w") +
-    labs(title="95% coverage against Log w")
+    labs(title="95% coverage against Log w, task 4")
   
   multiplot(p_logw68.list[[p]], p_logw95.list[[p]])
   

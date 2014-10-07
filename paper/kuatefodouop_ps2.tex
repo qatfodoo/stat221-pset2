@@ -185,7 +185,7 @@ Let's compute the derivatives of $l_{post}$:
 \frac{\partial l_{post}}{\partial \d z_j} & = - \frac{z_j - \mu}{\sigma^2} + S_j - n \* w_j \* e^{z_j}\\
 \frac{\partial^2 l_{post}}{\partial \d z_j^2} & = - \frac{1}{\sigma^2} - n \* w_j \* e^{z_j}
 \end{align*}
-$\frac{\partial^2 l_{post}}{\partial \d z_j^2} <0$, so $\frac{\partial l_{post}}{\partial \d z_j}$ is decreasing. Having $\frac{\partial l_{post}}{\partial \d z_j} \overset{-\infty}{\to} +\infty$ and $\frac{\partial l_{post}}{\partial \d z_j} \overset{+\infty}{\to} -\infty$, $\frac{\partial l_{post}}{\partial \d z_j}$ has one and only zero. So that the \textbf{conditional posterior of $log\left(\theta_j\right)$ is unimodal}.\\
+$\frac{\partial^2 l_{post}}{\partial \d z_j^2} <0$, so $\frac{\partial l_{post}}{\partial \d z_j}$ is nonincreasing. Having $\frac{\partial l_{post}}{\partial \d z_j} \overset{-\infty}{\to} +\infty$ and $\frac{\partial l_{post}}{\partial \d z_j} \overset{+\infty}{\to} -\infty$, $\frac{\partial l_{post}}{\partial \d z_j}$ has one and only zero. So that the \textbf{conditional posterior of $log\left(\theta_j\right)$ is unimodal}.\\
 
 
 -- To be removed --
