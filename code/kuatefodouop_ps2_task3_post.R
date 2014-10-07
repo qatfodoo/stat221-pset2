@@ -70,7 +70,7 @@ for (p in 1:n.param) {
     ylim(0, 1) +
     ylab("cov_68") +
     xlab("log.theta") +
-    labs(title="68% coverage against Log Theta, task 3")
+    labs(title=paste("68% coverage against Log Theta, task 3, params", p, sep=" "))
   
   p_logt95.list[[p]] <- ggplot(, aes(x=as.vector(ltheta), as.vector(cov95))) + 
     geom_point(size=3, alpha=1, colour="darkblue") +
@@ -78,7 +78,7 @@ for (p in 1:n.param) {
     ylim(0, 1) +
     ylab("cov_95") +
     xlab("log.theta") +
-    labs(title="95% coverage against Log Theta, task 3")
+    labs(title=paste("95% coverage against Log Theta, task 3, params", p, sep=" "))
   
   multiplot(p_logt68.list[[p]], p_logt95.list[[p]])
   

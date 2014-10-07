@@ -14,7 +14,7 @@ B.theta <- 8 #40 # theta drawss
 B.y <- floor(B / B.theta) # y draws for each theta
 
 mu.array <- c(1.6, 2.5, 5.2, 4.9)
-sigsq.array <- c(0.7^2, 1.3^2, 1,3^2, 1.6^2)
+sigsq.array <- c(0.7^2, 1.3^2, 1.3^2, 1.6^2)
 
 # Run simulation
 
