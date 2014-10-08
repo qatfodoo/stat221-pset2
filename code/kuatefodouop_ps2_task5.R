@@ -10,8 +10,8 @@ N <- 2
 w <- as.numeric(unlist(read.table("weights.txt"))) # distinct weights
 
 # Simulation parameters
-B <-50 # Number of simulations
-B.theta <- 5 # theta drawss
+B <-60 # Number of simulations
+B.theta <- 6 # theta drawss
 B.y <- floor(B / B.theta) # y draws for each theta
 
 x.0_array <- c(1.6, 1.6, 1.6, 1.6)
